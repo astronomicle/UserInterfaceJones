@@ -12,7 +12,7 @@ public class Target : MonoBehaviour
     private float xRange = 4;
     private float ySpawnPos = -3;
 
-    public ParticleSystem expolosionParticle;
+    public ParticleSystem explosionParticle;
     public int pointValue;
 
     void Start()
@@ -36,7 +36,7 @@ public class Target : MonoBehaviour
         if (gameManager.isGameActive)
         {
             Destroy(gameObject);
-            Instantiate(expolosionParticle, transform.position, expolosionParticle.transform.rotation);
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             gameManager.UpdateScore(pointValue);
         }
     }
@@ -48,6 +48,16 @@ public class Target : MonoBehaviour
         if (!gameObject.CompareTag("Bad") && gameManager.isGameActive)
         {
             gameManager.UpdateLives(-1);
+        }
+    }
+
+    public void DestroyTarget()
+    {
+        if (gameManager.isGameActive)
+        {
+            Destroy(gameObject);
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+            gameManager.UpdateScore(pointValue);
         }
     }
 
